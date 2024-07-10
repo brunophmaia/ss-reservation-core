@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: ss-reservation-core
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ss-reservation
+    username: postgres
+    password: ss-reservation
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    generate-ddl: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+server:
+  port: 8080
+logging:
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
