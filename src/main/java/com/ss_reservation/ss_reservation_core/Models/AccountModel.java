@@ -1,5 +1,7 @@
 package com.ss_reservation.ss_reservation_core.Models;
 
+import com.ss_reservation.ss_reservation_core.Utility.Util;
+
 import java.util.Date;
 
 public class AccountModel {
@@ -11,6 +13,16 @@ public class AccountModel {
     private String email;
     private String password;
     private String phone;
+
+    public boolean checkNullRequiredFields(){
+        return (Util.isStringNullOrEmpty(this.name) ||
+               Util.isStringNullOrEmpty(this.lastName) ||
+               this.birthDate == null ||
+               !Character.isLetter(this.gender) ||
+               Util.isStringNullOrEmpty(this.email) ||
+               Util.isStringNullOrEmpty(this.password) ||
+               Util.isStringNullOrEmpty(this.phone));
+    }
 
     public String getName() {
         return name;

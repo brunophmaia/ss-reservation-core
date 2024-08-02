@@ -5,9 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Column;
-
 import java.util.Date;
-
 
 @Entity
 public class Account {
@@ -16,23 +14,26 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 150)
+    @Column(length = 150, nullable = false)
     private String name;
 
-    @Column(length = 150)
+    @Column(length = 150, nullable = false)
     private String lastName;
 
-    @Column(length = 100)
+    @Column(length = 100, nullable = false, unique = true)
+
     private String email;
 
-    @Column(length = 1000)
+    @Column(length = 1000, nullable = false)
     private String password;
 
+    @Column(nullable = false)
     private char gender;
 
+    @Column(nullable = false)
     private Date birthDate;
 
-    @Column(length = 20)
+    @Column(length = 20, nullable = false)
     private String phone;
 
     public Long getId() {
