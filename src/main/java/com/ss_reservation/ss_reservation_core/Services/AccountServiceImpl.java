@@ -5,7 +5,7 @@ import com.ss_reservation.ss_reservation_core.Models.Mappers.AccountMapper;
 import com.ss_reservation.ss_reservation_core.Models.Validation.AccountValidation;
 import com.ss_reservation.ss_reservation_core.Repository.AccountRepository;
 import com.ss_reservation.ss_reservation_core.Models.AccountModel;
-import com.ss_reservation.ss_reservation_core.Security.SecurityService;
+import com.ss_reservation.ss_reservation_core.Security.PasswordEncoderService;
 import com.ss_reservation.ss_reservation_core.Services.Interfaces.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -20,10 +20,10 @@ public class AccountServiceImpl implements AccountService {
     @Autowired
     private ApplicationContext context;
 
-    private final SecurityService securityService;
+    private final PasswordEncoderService passwordEncoderService;
 
     public AccountServiceImpl () {
-        this.securityService = new SecurityService();
+        this.passwordEncoderService = new PasswordEncoderService();
     }
 
     public synchronized void createUser(AccountModel accountModel){
@@ -32,7 +32,7 @@ public class AccountServiceImpl implements AccountService {
         accountValidation.checkAccount(accountModel);
 
         Account account = AccountMapper.INSTANCE.toEntity(accountModel);
-        account.setPassword(securityService.getEncodedPassword(accountModel.getPassword()));
+        account.setPassword(passwordEncoderService.getEncodedPassword(accountModel.getPassword()));
 
         accountRepository.save(account);
     }

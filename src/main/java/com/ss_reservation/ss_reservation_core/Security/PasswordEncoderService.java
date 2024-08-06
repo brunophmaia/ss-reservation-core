@@ -2,11 +2,11 @@ package com.ss_reservation.ss_reservation_core.Security;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-public class SecurityService {
+public class PasswordEncoderService {
 
     private final BCryptPasswordEncoder passwordEncoder;
 
-    public SecurityService() {
+    public PasswordEncoderService() {
         this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
