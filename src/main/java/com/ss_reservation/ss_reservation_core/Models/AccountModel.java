@@ -13,6 +13,7 @@ public class AccountModel {
     private String email;
     private String password;
     private String phone;
+    private String emailCode;
 
     public boolean checkNullRequiredFields(){
         return (Util.isStringNullOrEmpty(this.name) ||
@@ -21,7 +22,8 @@ public class AccountModel {
                !Character.isLetter(this.gender) ||
                Util.isStringNullOrEmpty(this.email) ||
                Util.isStringNullOrEmpty(this.password) ||
-               Util.isStringNullOrEmpty(this.phone));
+               Util.isStringNullOrEmpty(this.phone) ||
+               Util.isStringNullOrEmpty(this.emailCode));
     }
 
     public String getName() {
@@ -78,5 +80,13 @@ public class AccountModel {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getEmailCode() {
+        return emailCode;
+    }
+
+    public void setEmailCode(String emailCode) {
+        this.emailCode = emailCode;
     }
 }

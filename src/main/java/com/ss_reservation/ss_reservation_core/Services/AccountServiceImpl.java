@@ -20,6 +20,9 @@ public class AccountServiceImpl implements AccountService {
     @Autowired
     private ApplicationContext context;
 
+    @Autowired
+    private EmailCodeConfirmationService emailCodeConfirmationService;
+
     private final PasswordEncoderService passwordEncoderService;
 
     public AccountServiceImpl () {
@@ -35,5 +38,11 @@ public class AccountServiceImpl implements AccountService {
         account.setPassword(passwordEncoderService.getEncodedPassword(accountModel.getPassword()));
 
         accountRepository.save(account);
+    }
+
+    public void sendEmailCode(String email) {
+        emailCodeConfirmationService.setEmail(email);
+        emailCodeConfirmationService.generateEmailCode();
+        emailCodeConfirmationService.sendEmail();
     }
 }

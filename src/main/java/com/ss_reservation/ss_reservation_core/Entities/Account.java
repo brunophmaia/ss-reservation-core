@@ -21,7 +21,6 @@ public class Account {
     private String lastName;
 
     @Column(length = 100, nullable = false, unique = true)
-
     private String email;
 
     @Column(length = 1000, nullable = false)
