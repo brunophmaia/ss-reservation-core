@@ -5,7 +5,6 @@ import com.ss_reservation.ss_reservation_core.account.repository.EmailCodeConfir
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-
 import java.util.Date;
 import java.util.Random;
 
@@ -15,7 +14,6 @@ public class EmailCodeConfirmationService {
 
     private String email;
     private String code;
-
     private final Random random = new Random();
 
     @Autowired

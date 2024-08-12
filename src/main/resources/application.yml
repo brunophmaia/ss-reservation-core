@@ -1,3 +1,5 @@
+account:
+  email-code-expiration-hours: 24
 spring:
   application:
     name: ss-reservation-core
