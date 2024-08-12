@@ -1,7 +1,7 @@
-package com.ss_reservation.ss_reservation_core.Controllers;
+package com.ss_reservation.ss_reservation_core.account.controller;
 
-import com.ss_reservation.ss_reservation_core.Models.AccountModel;
-import com.ss_reservation.ss_reservation_core.Services.Interfaces.AccountService;
+import com.ss_reservation.ss_reservation_core.account.model.AccountDTO;
+import com.ss_reservation.ss_reservation_core.account.service.Interface.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +13,7 @@ public class AccountController {
     AccountService accountService;
 
     @PostMapping(produces = "application/json")
-    public void createUser(@RequestBody AccountModel account) {
+    public void createUser(@RequestBody AccountDTO account) {
         accountService.createUser(account);
     }
 

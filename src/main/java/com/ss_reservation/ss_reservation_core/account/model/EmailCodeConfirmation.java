@@ -1,4 +1,4 @@
-package com.ss_reservation.ss_reservation_core.Entities;
+package com.ss_reservation.ss_reservation_core.account.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,8 +13,9 @@ public class EmailCodeConfirmation {
     public EmailCodeConfirmation(String email){
         this.email = email;
         this.attempts = 0;
-        this.createDate = new Date();
     }
+
+    public EmailCodeConfirmation(){}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

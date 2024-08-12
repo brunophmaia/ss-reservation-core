@@ -1,4 +1,4 @@
-package com.ss_reservation.ss_reservation_core.Security;
+package com.ss_reservation.ss_reservation_core.account.config;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 

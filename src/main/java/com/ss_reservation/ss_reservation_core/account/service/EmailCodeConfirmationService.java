@@ -1,10 +1,12 @@
-package com.ss_reservation.ss_reservation_core.Services;
+package com.ss_reservation.ss_reservation_core.account.service;
 
-import com.ss_reservation.ss_reservation_core.Entities.EmailCodeConfirmation;
-import com.ss_reservation.ss_reservation_core.Repository.EmailCodeConfirmationRepository;
+import com.ss_reservation.ss_reservation_core.account.model.EmailCodeConfirmation;
+import com.ss_reservation.ss_reservation_core.account.repository.EmailCodeConfirmationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import java.util.Date;
 import java.util.Random;
 
 @Component
@@ -33,6 +35,7 @@ public class EmailCodeConfirmationService {
         this.code = generateCode();
 
         emailCodeConfirmation.setCode(this.code);
+        emailCodeConfirmation.setCreateDate(new Date());
         emailCodeConfirmationRepo.save(emailCodeConfirmation);
     }
 

@@ -1,10 +1,10 @@
-package com.ss_reservation.ss_reservation_core.Models;
+package com.ss_reservation.ss_reservation_core.account.model;
 
-import com.ss_reservation.ss_reservation_core.Utility.Util;
+import com.ss_reservation.ss_reservation_core.common.util.Utility;
 
 import java.util.Date;
 
-public class AccountModel {
+public class AccountDTO {
 
     private String name;
     private String lastName;
@@ -16,14 +16,14 @@ public class AccountModel {
     private String emailCode;
 
     public boolean checkNullRequiredFields(){
-        return (Util.isStringNullOrEmpty(this.name) ||
-               Util.isStringNullOrEmpty(this.lastName) ||
+        return (Utility.isStringNullOrEmpty(this.name) ||
+               Utility.isStringNullOrEmpty(this.lastName) ||
                this.birthDate == null ||
                !Character.isLetter(this.gender) ||
-               Util.isStringNullOrEmpty(this.email) ||
-               Util.isStringNullOrEmpty(this.password) ||
-               Util.isStringNullOrEmpty(this.phone) ||
-               Util.isStringNullOrEmpty(this.emailCode));
+               Utility.isStringNullOrEmpty(this.email) ||
+               Utility.isStringNullOrEmpty(this.password) ||
+               Utility.isStringNullOrEmpty(this.phone) ||
+               Utility.isStringNullOrEmpty(this.emailCode));
     }
 
     public String getName() {

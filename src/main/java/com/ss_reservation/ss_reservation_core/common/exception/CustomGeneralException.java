@@ -1,4 +1,4 @@
-package com.ss_reservation.ss_reservation_core.Exception;
+package com.ss_reservation.ss_reservation_core.common.exception;
 
 import java.util.List;
 

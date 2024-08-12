@@ -1,6 +1,6 @@
-package com.ss_reservation.ss_reservation_core.Repository;
+package com.ss_reservation.ss_reservation_core.account.repository;
 
-import com.ss_reservation.ss_reservation_core.Entities.EmailCodeConfirmation;
+import com.ss_reservation.ss_reservation_core.account.model.EmailCodeConfirmation;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EmailCodeConfirmationRepository extends JpaRepository<EmailCodeConfirmation, Long> {

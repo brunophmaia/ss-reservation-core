@@ -1,12 +1,12 @@
-package com.ss_reservation.ss_reservation_core.Services;
+package com.ss_reservation.ss_reservation_core.account.service;
 
-import com.ss_reservation.ss_reservation_core.Entities.Account;
-import com.ss_reservation.ss_reservation_core.Models.Mappers.AccountMapper;
-import com.ss_reservation.ss_reservation_core.Models.Validation.AccountValidation;
-import com.ss_reservation.ss_reservation_core.Repository.AccountRepository;
-import com.ss_reservation.ss_reservation_core.Models.AccountModel;
-import com.ss_reservation.ss_reservation_core.Security.PasswordEncoderService;
-import com.ss_reservation.ss_reservation_core.Services.Interfaces.AccountService;
+import com.ss_reservation.ss_reservation_core.account.model.Account;
+import com.ss_reservation.ss_reservation_core.account.mapper.AccountMapper;
+import com.ss_reservation.ss_reservation_core.account.validation.AccountValidation;
+import com.ss_reservation.ss_reservation_core.account.repository.AccountRepository;
+import com.ss_reservation.ss_reservation_core.account.model.AccountDTO;
+import com.ss_reservation.ss_reservation_core.account.config.PasswordEncoderService;
+import com.ss_reservation.ss_reservation_core.account.service.Interface.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
@@ -29,13 +29,13 @@ public class AccountServiceImpl implements AccountService {
         this.passwordEncoderService = new PasswordEncoderService();
     }
 
-    public synchronized void createUser(AccountModel accountModel){
+    public synchronized void createUser(AccountDTO accountDTO){
 
         AccountValidation accountValidation = context.getBean(AccountValidation.class);
-        accountValidation.checkAccount(accountModel);
+        accountValidation.checkAccount(accountDTO);
 
-        Account account = AccountMapper.INSTANCE.toEntity(accountModel);
-        account.setPassword(passwordEncoderService.getEncodedPassword(accountModel.getPassword()));
+        Account account = AccountMapper.INSTANCE.toEntity(accountDTO);
+        account.setPassword(passwordEncoderService.getEncodedPassword(accountDTO.getPassword()));
 
         accountRepository.save(account);
     }

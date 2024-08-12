@@ -1,4 +1,4 @@
-package com.ss_reservation.ss_reservation_core.Models;
+package com.ss_reservation.ss_reservation_core.common.model;
 
 import java.util.List;
 
