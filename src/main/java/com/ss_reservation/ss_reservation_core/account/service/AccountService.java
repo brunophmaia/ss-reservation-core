@@ -6,13 +6,12 @@ import com.ss_reservation.ss_reservation_core.account.validation.AccountValidati
 import com.ss_reservation.ss_reservation_core.account.repository.AccountRepository;
 import com.ss_reservation.ss_reservation_core.account.model.AccountDTO;
 import com.ss_reservation.ss_reservation_core.account.config.PasswordEncoderService;
-import com.ss_reservation.ss_reservation_core.account.service.Interface.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AccountServiceImpl implements AccountService {
+public class AccountService {
 
     @Autowired
     private AccountRepository accountRepository;
@@ -25,7 +24,7 @@ public class AccountServiceImpl implements AccountService {
 
     private final PasswordEncoderService passwordEncoderService;
 
-    public AccountServiceImpl () {
+    public AccountService() {
         this.passwordEncoderService = new PasswordEncoderService();
     }
 

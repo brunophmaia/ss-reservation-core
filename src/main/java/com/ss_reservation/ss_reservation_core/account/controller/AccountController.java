@@ -1,7 +1,7 @@
 package com.ss_reservation.ss_reservation_core.account.controller;
 
 import com.ss_reservation.ss_reservation_core.account.model.AccountDTO;
-import com.ss_reservation.ss_reservation_core.account.service.Interface.AccountService;
+import com.ss_reservation.ss_reservation_core.account.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
