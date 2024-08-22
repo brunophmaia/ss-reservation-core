@@ -2,6 +2,7 @@ package com.ss_reservation.ss_reservation_core.account.service;
 
 import com.ss_reservation.ss_reservation_core.account.model.EmailCodeConfirmation;
 import com.ss_reservation.ss_reservation_core.account.repository.EmailCodeConfirmationRepository;
+import com.ss_reservation.ss_reservation_core.email.service.EmailSendingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -18,6 +19,9 @@ public class EmailCodeConfirmationService {
 
     @Autowired
     private EmailCodeConfirmationRepository emailCodeConfirmationRepo;
+
+    @Autowired
+    private EmailSendingService emailSendingService;
 
     public void setEmail(String email){
         this.email = email;
@@ -38,7 +42,13 @@ public class EmailCodeConfirmationService {
     }
 
     public void sendEmail(){
-        System.out.println(this.code);
+        try {
+            emailSendingService.sendEmail(this.email, "SS-Reservation Email Confirmation", String.format("Code: %s", this.code));
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+            ex.printStackTrace();
+        }
     }
 
     private String generateCode() {

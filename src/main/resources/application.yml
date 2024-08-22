@@ -16,6 +16,24 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+  mail:
+    host: email-smtp.sa-east-1.amazonaws.com
+    port: 587
+    username: AKIA6GBMHBIJPRTVUC5T
+    password: BBWypwL/vH8Nu4kuQOUaCGNf6rMRdgKBTe7kAhLLE9Og
+    properties:
+      mail:
+        transport:
+          protocol: smtp
+        smtp:
+          port: 587
+          auth: true
+          starttls:
+            enable: true
+            required: true
+#          connectiontimeout: 5000
+#          timeout: 3000
+#          writetimeout: 5000
 server:
   port: 8080
 logging:
