@@ -1,5 +1,6 @@
 package com.ss_reservation.ss_reservation_core.email.service;
 
+import com.ss_reservation.ss_reservation_core.common.exception.CustomGeneralException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -21,14 +22,14 @@ public class EmailSendingService {
             MimeMessageHelper helper = new MimeMessageHelper(message);
 
             helper.setFrom("bruno.ph.maia08@gmail.com");
-            helper.setTo("maiaphbruno@gmail.com");
+            helper.setTo(to);
             helper.setSubject(subject);
             helper.setText(body, true);
 
             mailSender.send(message);
         }
         catch (Exception e) {
-            e.printStackTrace();
+            throw new CustomGeneralException("createAccount.errorCodeGenerating");
         }
     }
 }

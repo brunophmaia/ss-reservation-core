@@ -42,13 +42,7 @@ public class EmailCodeConfirmationService {
     }
 
     public void sendEmail(){
-        try {
-            emailSendingService.sendEmail(this.email, "SS-Reservation Email Confirmation", String.format("Code: %s", this.code));
-        }
-        catch (Exception ex) {
-            ex.printStackTrace();
-            ex.printStackTrace();
-        }
+        emailSendingService.sendEmail(this.email, "SS-Reservation Email Confirmation", String.format("Code: %s", this.code));
     }
 
     private String generateCode() {
