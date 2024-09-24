@@ -29,7 +29,7 @@ public class EmailSendingService {
             mailSender.send(message);
         }
         catch (Exception e) {
-            throw new CustomGeneralException("createAccount.errorCodeGenerating");
+            throw new CustomGeneralException("createAccount.codeGenerationError");
         }
     }
 }
