@@ -55,7 +55,7 @@ public class AccountValidation {
         }
     }
 
-    private List<String> getListEmailInInUse(String email) {
+    public static List<String> getListEmailInInUse(String email) {
         List<String> emails = new ArrayList<String>();
         emails.add(email);
         return emails;

@@ -1,7 +1,10 @@
 package com.ss_reservation.ss_reservation_core.account.service;
 
 import com.ss_reservation.ss_reservation_core.account.model.EmailCodeConfirmation;
+import com.ss_reservation.ss_reservation_core.account.repository.AccountRepository;
 import com.ss_reservation.ss_reservation_core.account.repository.EmailCodeConfirmationRepository;
+import com.ss_reservation.ss_reservation_core.account.validation.AccountValidation;
+import com.ss_reservation.ss_reservation_core.common.exception.CustomGeneralException;
 import com.ss_reservation.ss_reservation_core.email.service.EmailSendingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -23,11 +26,19 @@ public class EmailCodeConfirmationService {
     @Autowired
     private EmailSendingService emailSendingService;
 
+    @Autowired
+    private AccountRepository accountRepo;
+
     public void setEmail(String email){
         this.email = email;
     }
 
     public void generateEmailCode() {
+
+        if(accountRepo.existsByEmail(this.email)){
+            throw new CustomGeneralException("createAccount.emailInUse", AccountValidation.getListEmailInInUse(this.email));
+        }
+
         EmailCodeConfirmation emailCodeConfirmation = emailCodeConfirmationRepo.findByEmail(this.email);
 
         if(emailCodeConfirmation == null) {

@@ -5,7 +5,7 @@ import com.ss_reservation.ss_reservation_core.account.mapper.AccountMapper;
 import com.ss_reservation.ss_reservation_core.account.validation.AccountValidation;
 import com.ss_reservation.ss_reservation_core.account.repository.AccountRepository;
 import com.ss_reservation.ss_reservation_core.account.model.AccountDTO;
-import com.ss_reservation.ss_reservation_core.account.config.PasswordEncoderService;
+import com.ss_reservation.ss_reservation_core.security.service.PasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
@@ -22,10 +22,10 @@ public class AccountService {
     @Autowired
     private EmailCodeConfirmationService emailCodeConfirmationService;
 
-    private final PasswordEncoderService passwordEncoderService;
+    private final PasswordEncoder passwordEncoder;
 
     public AccountService() {
-        this.passwordEncoderService = new PasswordEncoderService();
+        this.passwordEncoder = new PasswordEncoder();
     }
 
     public synchronized void createUser(AccountDTO accountDTO){
@@ -34,7 +34,7 @@ public class AccountService {
         accountValidation.checkAccount(accountDTO);
 
         Account account = AccountMapper.INSTANCE.toEntity(accountDTO);
-        account.setPassword(passwordEncoderService.getEncodedPassword(accountDTO.getPassword()));
+        account.setPassword(passwordEncoder.getEncodedPassword(accountDTO.getPassword()));
 
         accountRepository.save(account);
     }
@@ -43,5 +43,16 @@ public class AccountService {
         emailCodeConfirmationService.setEmail(email);
         emailCodeConfirmationService.generateEmailCode();
         emailCodeConfirmationService.sendEmail();
+    }
+
+    public boolean checkUser(String username, String password) {
+
+        Account account = accountRepository.findByEmail(username);
+
+        if(account == null) {
+            return false;
+        }
+
+        return passwordEncoder.isValidPassword(password, account.getPassword());
     }
 }

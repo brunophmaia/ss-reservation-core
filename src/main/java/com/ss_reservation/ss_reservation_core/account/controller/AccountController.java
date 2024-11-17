@@ -21,4 +21,9 @@ public class AccountController {
     public void sendEmailCode(@RequestParam String email) {
         accountService.sendEmailCode(email);
     }
+
+    @GetMapping("checkUser")
+    public boolean checkUser(@RequestParam String username, @RequestParam String password) {
+        return accountService.checkUser(username, password);
+    }
 }

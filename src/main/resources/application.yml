@@ -1,5 +1,6 @@
 account:
   email-code-expiration-hours: 24
+  url: http://localhost:8080/account
 spring:
   application:
     name: ss-reservation-core

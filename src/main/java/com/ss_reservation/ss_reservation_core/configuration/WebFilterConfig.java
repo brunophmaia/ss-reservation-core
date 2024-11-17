@@ -1,4 +1,4 @@
-package com.ss_reservation.ss_reservation_core.account.config;
+package com.ss_reservation.ss_reservation_core.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,11 +12,12 @@ import org.springframework.security.web.SecurityFilterChain;
 public class WebFilterConfig {
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain webFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorizeRequests ->
                     authorizeRequests
                         .requestMatchers("/account/**").permitAll()
+                        .requestMatchers("/login/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .csrf(AbstractHttpConfigurer::disable);
