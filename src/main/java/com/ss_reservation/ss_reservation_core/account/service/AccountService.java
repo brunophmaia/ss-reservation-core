@@ -42,7 +42,7 @@ public class AccountService {
     public void sendEmailCode(String email) {
         emailCodeConfirmationService.setEmail(email);
         emailCodeConfirmationService.generateEmailCode();
-        emailCodeConfirmationService.sendEmail();
+        //emailCodeConfirmationService.sendEmail();
     }
 
     public boolean checkUser(String username, String password) {

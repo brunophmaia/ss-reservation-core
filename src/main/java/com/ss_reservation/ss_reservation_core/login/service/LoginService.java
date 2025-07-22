@@ -1,8 +1,8 @@
 package com.ss_reservation.ss_reservation_core.login.service;
 
-import com.ss_reservation.ss_reservation_core.account.validation.AccountValidation;
 import com.ss_reservation.ss_reservation_core.common.exception.CustomGeneralException;
 import com.ss_reservation.ss_reservation_core.login.model.LoginDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -14,7 +14,10 @@ public class LoginService {
     @Value("${account.url}")
     private String accountUrl;
 
-    public void login(LoginDTO login){
+    @Autowired
+    private JwtUtil jwtUtil;
+
+    public String login(LoginDTO login){
 
         WebClient client = WebClient.builder()
                 .baseUrl(accountUrl)
@@ -33,5 +36,7 @@ public class LoginService {
         if(credentialsResult != null && !credentialsResult) {
             throw new CustomGeneralException("login.invalidCredentials");
         }
+
+        return jwtUtil.generateToken(login.getUsername());
     }
 }
