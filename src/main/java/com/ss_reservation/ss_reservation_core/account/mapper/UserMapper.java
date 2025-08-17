@@ -1,6 +1,6 @@
 package com.ss_reservation.ss_reservation_core.account.mapper;
 
-import com.ss_reservation.ss_reservation_core.account.model.Account;
+import com.ss_reservation.ss_reservation_core.account.entity.Account;
 import com.ss_reservation.ss_reservation_core.account.model.UserInfoDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

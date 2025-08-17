@@ -1,6 +1,6 @@
 package com.ss_reservation.ss_reservation_core.account.service;
 
-import com.ss_reservation.ss_reservation_core.account.model.EmailCodeConfirmation;
+import com.ss_reservation.ss_reservation_core.account.entity.EmailCodeConfirmation;
 import com.ss_reservation.ss_reservation_core.account.repository.AccountRepository;
 import com.ss_reservation.ss_reservation_core.account.repository.EmailCodeConfirmationRepository;
 import com.ss_reservation.ss_reservation_core.account.validation.AccountValidation;

@@ -1,10 +1,8 @@
-package com.ss_reservation.ss_reservation_core.account.model;
+package com.ss_reservation.ss_reservation_core.account.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Column;
+import jakarta.persistence.*;
+
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -34,6 +32,23 @@ public class Account {
 
     @Column(length = 20, nullable = false)
     private String phone;
+
+    @Column(nullable = false)
+    private LocalDateTime createDate;
+
+    @Column(nullable = false)
+    private LocalDateTime updateDate;
+
+    @PrePersist
+    protected void onCreate() {
+        createDate = LocalDateTime.now();
+        updateDate = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updateDate = LocalDateTime.now();
+    }
 
     public Long getId() {
         return id;
@@ -97,5 +112,21 @@ public class Account {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public LocalDateTime getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(LocalDateTime createDate) {
+        this.createDate = createDate;
+    }
+
+    public LocalDateTime getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(LocalDateTime updateDate) {
+        this.updateDate = updateDate;
     }
 }

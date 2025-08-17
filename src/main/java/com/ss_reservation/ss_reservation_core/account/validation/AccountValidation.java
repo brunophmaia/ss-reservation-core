@@ -1,6 +1,6 @@
 package com.ss_reservation.ss_reservation_core.account.validation;
 
-import com.ss_reservation.ss_reservation_core.account.model.EmailCodeConfirmation;
+import com.ss_reservation.ss_reservation_core.account.entity.EmailCodeConfirmation;
 import com.ss_reservation.ss_reservation_core.account.repository.EmailCodeConfirmationRepository;
 import com.ss_reservation.ss_reservation_core.common.exception.CustomGeneralException;
 import com.ss_reservation.ss_reservation_core.account.model.AccountDTO;

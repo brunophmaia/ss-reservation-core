@@ -1,6 +1,6 @@
 package com.ss_reservation.ss_reservation_core.account.service;
 
-import com.ss_reservation.ss_reservation_core.account.model.Account;
+import com.ss_reservation.ss_reservation_core.account.entity.Account;
 import com.ss_reservation.ss_reservation_core.account.mapper.AccountMapper;
 import com.ss_reservation.ss_reservation_core.account.validation.AccountValidation;
 import com.ss_reservation.ss_reservation_core.account.repository.AccountRepository;
@@ -45,14 +45,14 @@ public class AccountService {
         //emailCodeConfirmationService.sendEmail();
     }
 
-    public boolean checkUser(String username, String password) {
+    public Long checkUser(String username, String password) {
 
         Account account = accountRepository.findByEmail(username);
 
         if(account == null) {
-            return false;
+            return null;
         }
 
-        return passwordEncoder.isValidPassword(password, account.getPassword());
+        return passwordEncoder.isValidPassword(password, account.getPassword()) ? account.getId() : null;
     }
 }

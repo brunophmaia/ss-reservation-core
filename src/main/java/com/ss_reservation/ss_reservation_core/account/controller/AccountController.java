@@ -23,7 +23,7 @@ public class AccountController {
     }
 
     @GetMapping("checkUser")
-    public boolean checkUser(@RequestParam String username, @RequestParam String password) {
+    public Long checkUser(@RequestParam String username, @RequestParam String password) {
         return accountService.checkUser(username, password);
     }
 }

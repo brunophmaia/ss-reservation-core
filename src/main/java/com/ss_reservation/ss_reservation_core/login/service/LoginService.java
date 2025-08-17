@@ -23,20 +23,20 @@ public class LoginService {
                 .baseUrl(accountUrl)
                 .build();
 
-        Mono<Boolean> result = client.get()
+        Mono<Long> result = client.get()
                         .uri(uriBuilder -> uriBuilder
                         .path("/checkUser")
                         .queryParam("username", login.getUsername())
                         .queryParam("password", login.getPassword())
                         .build())
-                .retrieve().bodyToMono(Boolean.class);
+                .retrieve().bodyToMono(Long.class);
 
-        Boolean credentialsResult = result.block();
+        Long credentialsResult = result.block();
 
-        if(credentialsResult != null && !credentialsResult) {
+        if(credentialsResult == null) {
             throw new CustomGeneralException("login.invalidCredentials");
         }
 
-        return jwtUtil.generateToken(login.getUsername());
+        return jwtUtil.generateToken(login.getUsername(), credentialsResult);
     }
 }

@@ -21,6 +21,8 @@ spring:
     generate-ddl: true
     properties:
       hibernate:
+        jdbc:
+          time_zone: UTC
         dialect: org.hibernate.dialect.PostgreSQLDialect
   mail:
     host: email-smtp.sa-east-1.amazonaws.com

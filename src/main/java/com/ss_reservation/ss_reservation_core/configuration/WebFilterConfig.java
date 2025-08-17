@@ -1,5 +1,6 @@
 package com.ss_reservation.ss_reservation_core.configuration;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,6 +29,7 @@ public class WebFilterConfig {
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers("/account/**").permitAll()
+                                .requestMatchers("/accountType/**").permitAll()
                                 .requestMatchers("/login/**").permitAll()
                                 .anyRequest().authenticated()
                 )
@@ -40,18 +42,24 @@ public class WebFilterConfig {
                 )
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
+        http.exceptionHandling(exh -> exh.authenticationEntryPoint(
+                ((request, response, authException) -> {
+                    response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+                })
+        ));
+
         return http.build();
     }
 
-    @Bean
-    @Primary
-    public SecurityContextRepository securityContextRepository() {
-        return new HttpSessionSecurityContextRepository();
-    }
-
-    @Bean
-    public AuthenticationManager authenticationManager(
-            AuthenticationConfiguration config) throws Exception {
-        return config.getAuthenticationManager();
-    }
+//    @Bean
+//    @Primary
+//    public SecurityContextRepository securityContextRepository() {
+//        return new HttpSessionSecurityContextRepository();
+//    }
+//
+//    @Bean
+//    public AuthenticationManager authenticationManager(
+//            AuthenticationConfiguration config) throws Exception {
+//        return config.getAuthenticationManager();
+//    }
 }

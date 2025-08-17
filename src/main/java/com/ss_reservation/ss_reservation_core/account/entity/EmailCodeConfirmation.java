@@ -1,4 +1,4 @@
-package com.ss_reservation.ss_reservation_core.account.model;
+package com.ss_reservation.ss_reservation_core.account.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
