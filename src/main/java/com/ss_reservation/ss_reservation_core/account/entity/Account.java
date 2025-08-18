@@ -33,6 +33,10 @@ public class Account {
     @Column(length = 20, nullable = false)
     private String phone;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "account_type_id", nullable = false)
+    private AccountType accountType;
+
     @Column(nullable = false)
     private LocalDateTime createDate;
 
@@ -128,5 +132,26 @@ public class Account {
 
     public void setUpdateDate(LocalDateTime updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public Long getAccountTypeId() {
+        return accountType != null ? accountType.getId() : null;
+    }
+
+    public void setAccountTypeId(Long accountTypeId) {
+        if (accountTypeId != null) {
+            this.accountType = new AccountType();
+            this.accountType.setId(accountTypeId);
+        } else {
+            this.accountType = null;
+        }
+    }
+
+    public AccountType getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(AccountType accountType) {
+        this.accountType = accountType;
     }
 }
