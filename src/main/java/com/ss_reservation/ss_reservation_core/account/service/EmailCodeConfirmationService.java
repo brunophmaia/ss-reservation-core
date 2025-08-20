@@ -35,7 +35,7 @@ public class EmailCodeConfirmationService {
 
     public void generateEmailCode() {
 
-        if(accountRepo.existsByEmail(this.email)){
+        if(accountRepo.existsByEmailIgnoreCase(this.email)){
             throw new CustomGeneralException("createAccount.emailInUse", AccountValidation.getListEmailInInUse(this.email));
         }
 

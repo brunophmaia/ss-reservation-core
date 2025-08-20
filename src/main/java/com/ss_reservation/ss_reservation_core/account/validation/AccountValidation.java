@@ -31,7 +31,7 @@ public class AccountValidation {
             throw new CustomGeneralException("createAccount.checkFields");
         }
 
-        if(accountRepository.existsByEmail(accountDTO.getEmail())) {
+        if(accountRepository.existsByEmailIgnoreCase(accountDTO.getEmail())) {
             throw new CustomGeneralException("createAccount.emailInUse", getListEmailInInUse(accountDTO.getEmail()));
         }
 
