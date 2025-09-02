@@ -1,0 +1,19 @@
+account:
+  email-code-expiration-hours: 24
+server:
+  port: 8081
+security:
+  secret-key: ${JWT_SECRET}
+  service-secret-key: ${JWT_SERVICE_SECRET}
+spring:
+  application:
+    name: account-service
+  config:
+    import: optional:file:.env[.properties]
+  profiles:
+    active: dev
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver

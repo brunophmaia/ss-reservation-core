@@ -1,0 +1,5 @@
+gateway:
+  url: http://localhost:8080
+security:
+  secret-key: ${JWT_SECRET}
+  service-secret-key: ${JWT_SERVICE_SECRET}

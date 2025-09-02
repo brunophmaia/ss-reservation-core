@@ -1,0 +1,5 @@
+account:
+  url: https://production-gateway
+security:
+  secret-key: ${JWT_SECRET}
+  service-secret-key: ${JWT_SERVICE_SECRET}

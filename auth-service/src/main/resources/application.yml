@@ -1,0 +1,11 @@
+security:
+  token-minutes-expiration-time: 60
+server:
+  port: 8082
+spring:
+  application:
+    name: auth-service
+  config:
+    import: optional:file:.env[.properties]
+  profiles:
+    active: dev
