@@ -1,8 +1,10 @@
 package com.place2play.gateway.configuration.web;
 
+import com.place2play.gateway.configuration.properties.ApplicationProperties;
 import com.place2play.gateway.configuration.service.JwtTokenClientUtil;
 import com.place2play.gateway.configuration.service.JwtTokenServiceUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -13,6 +15,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 @Component
 public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
 
@@ -22,6 +26,9 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
     @Autowired
     JwtTokenClientUtil jwtTokenClientUtil;
 
+    @Autowired
+    private ApplicationProperties properties;
+
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 
@@ -29,9 +36,9 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
         String path = exchange.getRequest().getPath().toString();
         String clientToken = "";
 
-        if (path.startsWith("/auth/")) {
+        if(properties.getAllowedPaths().stream().anyMatch(path::startsWith)) {
             validReq = true;
-        };
+        }
 
         try {
             String authHeader = exchange.getRequest().getHeaders().getFirst(HttpHeaders.AUTHORIZATION);

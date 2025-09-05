@@ -29,6 +29,8 @@ public class WebFilterConfig {
                 ))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/account/checkUser/**").permitAll()
+                        .requestMatchers("/account/sendEmailCode/**").permitAll()
+                        .requestMatchers("/account/create/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)

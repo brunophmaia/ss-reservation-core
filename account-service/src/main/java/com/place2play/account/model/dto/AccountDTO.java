@@ -10,7 +10,6 @@ public class AccountDTO {
     private String lastName;
     private Date birthDate;
     private char gender;
-    private Long accountTypeId;
     private String email;
     private String password;
     private String phone;
@@ -22,7 +21,6 @@ public class AccountDTO {
                this.birthDate == null ||
                !Character.isLetter(this.gender) ||
                 TypeUtil.isStringNullOrEmpty(this.email) ||
-                TypeUtil.isLongNullOrEmpty(this.accountTypeId) ||
                 TypeUtil.isStringNullOrEmpty(this.password) ||
                 TypeUtil.isStringNullOrEmpty(this.phone) ||
                 TypeUtil.isStringNullOrEmpty(this.emailCode));
@@ -90,13 +88,5 @@ public class AccountDTO {
 
     public void setEmailCode(String emailCode) {
         this.emailCode = emailCode;
-    }
-
-    public Long getAccountTypeId() {
-        return accountTypeId;
-    }
-
-    public void setAccountTypeId(Long accountTypeId) {
-        this.accountTypeId = accountTypeId;
     }
 }

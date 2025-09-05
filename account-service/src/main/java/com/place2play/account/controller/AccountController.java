@@ -12,7 +12,7 @@ public class AccountController {
     @Autowired
     AccountService accountService;
 
-    @PostMapping(produces = "application/json")
+    @PostMapping(path = "create", produces = "application/json")
     public void createUser(@RequestBody AccountDTO account) {
         accountService.createUser(account);
     }
