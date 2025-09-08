@@ -1,0 +1,20 @@
+server:
+  port: 8083
+security:
+  secret-key: ${JWT_SECRET}
+  service-secret-key: ${JWT_SERVICE_SECRET}
+spring:
+  application:
+    name: sports-complex-service
+  config:
+    import: optional:file:.env[.properties]
+  profiles:
+    active: dev
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver

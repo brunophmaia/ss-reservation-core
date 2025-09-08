@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sports-complex-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sports-complex-service
+  template:
+    metadata:
+      labels:
+        app: sports-complex-service
+    spec:
+      containers:
+        - name: sports-complex-service
+          image: sports-complex-service:1.0
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sports-complex-service
+spec:
+  selector:
+    app: sports-complex-service
+  ports:
+    - port: 8080
+      targetPort: 8080
+  type: ClusterIP
