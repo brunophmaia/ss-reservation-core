@@ -12,13 +12,12 @@
     <relativePath/>
   </parent>
 
-  <groupId>com.example</groupId>
+  <groupId>com.place2play</groupId>
   <artifactId>api-gateway</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>jar</packaging>
 
   <name>api-gateway</name>
-  <description>Spring Cloud Gateway Demo</description>
 
   <properties>
     <java.version>21</java.version>

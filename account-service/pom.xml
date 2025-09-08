@@ -10,7 +10,7 @@
     <relativePath/>
   </parent>
 
-  <groupId>com.demo</groupId>
+  <groupId>com.place2play</groupId>
   <artifactId>account-service</artifactId>
   <version>1.0.0</version>
   <name>account-service</name>
